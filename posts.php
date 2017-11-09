@@ -45,7 +45,7 @@ try {
 <?php foreach ($posts as $post){ 
 ?>
             <div class="blog-post">
-                <h2 class="blog-post-title"><a href="#"><?php echo $post['Title']?></a></h2>
+                <h2 class="blog-post-title"><a href="single-post.php?post_id=<?php echo($post['Id']) ?>"><?php echo $post['Title']?></a></h2>
                 <p class="blog-post-meta"><?php echo $post['Created_at']?> <a href="#"><?php echo $post['Author']?></a></p>
 
             <?php echo $post['Body'];?>
