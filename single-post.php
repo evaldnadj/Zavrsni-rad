@@ -49,6 +49,23 @@ try {
 
             <?php echo $post['Body'];?>
             </div><!-- /.blog-post -->
+
+            <form action="create-comments.php" method="POST">
+           <label name ="Author">Author:</label><br>
+           <input type="text" name="Author"><br>
+           <textarea name="comments" rows="5" cols="25" placeholder="Your comment"></textarea><br>
+           <input type="submit">
+           <input type="hidden" name="Post_id" value="<?php echo $_GET['post_id']?>">
+           </form>
+
+        <div class ="removecomm">
+
+             <input type="button" value="hide-show" onclick="hide()"> 
+
+           </div>
+           <div class = "comments" id="comments">
+                <ul>
+
             <?php
                $statement = $conn->prepare("SELECT * FROM comments WHERE Post_id = {$_GET['post_id']}");
                $statement->execute();
@@ -57,19 +74,13 @@ try {
 
            foreach ($comments as $singleCom){
            ?>
-           <div class ="removecomm">
-
-             <input type="button" value="hide-show" onclick="hide()"> 
-
-           </div>
-           <div class = "comments" id="comments">
-               <ul>
                    <li> <?php echo $singleCom['Author'];?> </li> <br>
                    <li> <?php echo $singleCom['Text'];?> </li> <hr>
-               </ul>
-           </div>
+                   <button type="button" class="btn btn-default">Delete</button>
            <?php
            } ?>
+                </ul>
+           </div>
             <nav class="blog-pagination">
                 <a class="btn btn-outline-primary" href="#">Older</a>
                 <a class="btn btn-outline-secondary disabled" href="#">Newer</a>
